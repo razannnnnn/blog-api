@@ -1,0 +1,30 @@
+{
+  "name": "express-api-blog",
+  "version": "1.0.0",
+  "description": "api for bog website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "blog",
+    "crud",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "Razan",
+  "license": "WTFPL",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.44",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}
