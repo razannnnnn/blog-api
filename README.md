@@ -29,6 +29,18 @@ npm start
 
 Once the server is running, you can access the API via http://localhost:port/, where port is the port specified in the configuration file or the default port (usually 3000).
 
+## Development
+
+To start development server, you need to install Nodemon first. Run the following command:
+
+```bash
+npm install -g nodemon
+```
+Once Nodemon is installed, you can start the development server using the following command:
+```bash
+npm run dev
+```
+
 ## API Endpoints
 
 Here is a list of endpoints provided by the API:
