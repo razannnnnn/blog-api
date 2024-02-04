@@ -43,6 +43,7 @@ Here is a list of endpoints provided by the API:
 
 ## Directory Structure
 
+- 📂 **config**: Manages application configuration.
 - 📂 **controllers**: Manages application logic.
 - 📂 **models**: Stores database model definitions.
 - 📂 **routes**: Defines API endpoints and links them with controllers.
