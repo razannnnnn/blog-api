@@ -23,7 +23,7 @@ const formattedDateTime = jakartaTimezone.format("DD-MM-YYYY-HH_mm");
 // Multer configuration for handling file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./src/uploads");
+    cb(null, "./uploads");
   },
   filename: (req, file, cb) => {
     const originalname = file.originalname;
@@ -40,7 +40,7 @@ connectDB();
 
 // Middleware untuk menyimpan log ke file
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "../access.log"),
+  path.join(__dirname, "access.log"),
   { flags: "a" }
 );
 
@@ -88,7 +88,7 @@ const checkAccessLogId = (req, res, next) => {
 
 // Endpoint untuk menampilkan file access.log
 app.get("/access-log/:id", checkAccessLogId, (req, res) => {
-  const accessLogPath = path.join(__dirname, "../access.log");
+  const accessLogPath = path.join(__dirname, "access.log");
 
   // Baca isi file access.log
   fs.readFile(accessLogPath, "utf8", (err, data) => {
