@@ -13,7 +13,7 @@ This is a repository for an API built with Node.js to manage a blog. This API pr
 2. **Install Dependencies**: Navigate to the project directory and install dependencies by running:
 
     ```bash
-    cd blog_repo
+    cd blog-api
     npm install
     ```
 
@@ -33,10 +33,26 @@ Once the server is running, you can access the API via http://localhost:port/, w
 
 Here is a list of endpoints provided by the API:
 
-GET /api/blogs: Get all blogs.
-GET /api/blogs/:id: Get a blog by ID.
-POST /api/blogs: Create a new blog.
-PUT /api/blogs/:id: Update a blog by ID.
-DELETE /api/blogs/:id: Delete a blog by ID.
-GET /api/blogs/search?title=query: Search for blogs by title.
-DELETE /api/blogs/dell-all: Delete all blogs (Caution: This action cannot be undone).
+- GET /api/blogs: Get all blogs.
+- GET /api/blogs/:id: Get a blog by ID.
+- POST /api/blogs: Create a new blog.
+- PUT /api/blogs/:id: Update a blog by ID.
+- DELETE /api/blogs/:id: Delete a blog by ID.
+- GET /api/blogs/search?title=query: Search for blogs by title.
+- DELETE /api/blogs/dell-all: Delete all blogs (Caution: This action cannot be undone).
+
+## Directory Structure
+
+- 📂 **controllers**: Manages application logic.
+- 📂 **models**: Stores database model definitions.
+- 📂 **routes**: Defines API endpoints and links them with controllers.
+- 📂 **uploads**: Location for storing uploaded images.
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Author
+
+Created by [Razan](https://github.com/razn-id).
+
+Feel free to reach out if you have any questions or feedback!
