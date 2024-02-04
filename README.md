@@ -29,6 +29,17 @@ npm start
 
 Once the server is running, you can access the API via http://localhost:port/, where port is the port specified in the configuration file or the default port (usually 3000).
 
+## Configuration
+
+Create a `.env` file in the root directory of the project and add the following configurations:
+
+```env
+MONGO_URI=<Mongo_URI>
+PORT=<Port> # Default port is 3000
+```
+
+Replace `<Mongo_URI>` with your actual MongoDB URI and `<Port>` with the desired port number. If no port is provided, the default port used will be 3000.
+
 ## Development
 
 To start development server, you need to install Nodemon first. Run the following command:
