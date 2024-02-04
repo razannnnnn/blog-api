@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
+const requestIp = require("request-ip");
 const moment = require("moment-timezone");
 
 const app = express();
@@ -43,17 +44,21 @@ const accessLogStream = fs.createWriteStream(
   { flags: "a" }
 );
 
-// Middleware untuk menangkap IP address dan endpoint
+// Middleware untuk mendapatkan alamat IP pengguna
+app.use(requestIp.mw());
+
+// Middleware morgan untuk menyimpan log ke file access.log
 app.use(
   morgan(
     (tokens, req, res) => {
       const jakartaTimezone = moment.tz("Asia/Jakarta");
       const formattedDateTime = jakartaTimezone.format("DD-MM-YYYY HH:mm:ss");
+      const ip = req.clientIp; // Menggunakan clientIp dari request-ip
 
       return [
         formattedDateTime,
         "IP Address:",
-        req.ip,
+        ip,
         "Method:",
         tokens.method(req, res),
         "URL:",
