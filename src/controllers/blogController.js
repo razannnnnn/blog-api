@@ -16,7 +16,7 @@ exports.getAllBlogs = async (req, res) => {
 // Dapatkan blog berdasarkan ID
 exports.getBlogById = async (req, res) => {
   try {
-    const blog = await Blog.findOne({ _id: req.params.uniqueId });
+    const blog = await Blog.findOne({ _id: req.params.id });
     if (!blog) {
       return res.status(404).json({ message: "Blog tidak ditemukan" });
     }
