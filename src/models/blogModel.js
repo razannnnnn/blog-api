@@ -14,6 +14,8 @@ const blogSchema = new mongoose.Schema({
   content: { type: String, maxlength: 1000, required: true },
   createdDate: { type: String, default: formattedDate },
   createdTime: { type: String, default: formattedTime },
+  lastEditedDate: { type: String },
+  lastEditedTime: { type: String },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);

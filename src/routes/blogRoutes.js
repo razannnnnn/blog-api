@@ -27,21 +27,22 @@ module.exports = (upload) => {
   router.get("/search", blogController.searchBlogs);
 
   // Rute untuk menyajikan file gambar
-  // router.get("/images/:filename", (req, res) => {
-  //   const filename = req.params.filename;
-  //   const imagePath = path.join(__dirname, "/uploads", filename);
+  router.get("/img/:filename", (req, res) => {
+    const filename = req.params.filename;
+    const imagePath = path.join(__dirname, "../uploads", filename);
 
-  //   // Baca file gambar
-  //   fs.readFile(imagePath, (err, data) => {
-  //     if (err) {
-  //       // Jika terjadi kesalahan, tanggapi dengan 404 Not Found
-  //       res.status(404).send("File not found");
-  //     } else {
-  //       // Jika berhasil, set header dan kirim data gambar sebagai respons
-  //       res.setHeader("Content-Type", "image/png"); // Sesuaikan dengan jenis file gambar Anda
-  //       res.end(data);
-  //     }
-  //   });
-  // });
+    // Baca file gambar
+    fs.readFile(imagePath, (err, data) => {
+      if (err) {
+        // Jika terjadi kesalahan, tanggapi dengan 404 Not Found
+        res.status(404).send("File not found");
+      } else {
+        // Jika berhasil, set header dan kirim data gambar sebagai respons
+        res.setHeader("Content-Type", "image/png"); // Sesuaikan dengan jenis file gambar Anda
+        res.end(data);
+      }
+    });
+  });
+
   return router;
 };

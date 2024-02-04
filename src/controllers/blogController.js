@@ -1,5 +1,5 @@
 const Blog = require("../models/blogModel");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const fs = require("fs");
 const path = require("path");
 
@@ -75,6 +75,11 @@ exports.updateBlog = async (req, res) => {
         fs.unlinkSync(imagePath);
       }
     }
+
+    // Tambahkan waktu terakhir diedit
+    const jakartaTimezone = moment.tz("Asia/Jakarta");
+    updateFields.lastEditedDate = jakartaTimezone.format("DD/MM/YYYY");
+    updateFields.lastEditedTime = jakartaTimezone.format("HH:mm");
 
     const updatedBlog = await Blog.findByIdAndUpdate(
       req.params.id,
