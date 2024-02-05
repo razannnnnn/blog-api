@@ -34,11 +34,12 @@ Once the server is running, you can access the API via http://localhost:port/, w
 Create a `.env` file in the root directory of the project and add the following configurations:
 
 ```env
-MONGO_URI=<Mongo_URI>
+MONGO_URI=<Mongo_URI> # Your MongoDB atlas URI
 PORT=<Port> # Default port is 3000
+ACCESS_LOG_KEY=<YourSecretKey> # The default key if this is not set is admin123
 ```
 
-Replace `<Mongo_URI>` with your actual MongoDB URI and `<Port>` with the desired port number. If no port is provided, the default port used will be 3000.
+Replace `<Mongo_URI>` with your actual MongoDB URI, `<Port>` with the desired port number and `<YourSecretKey>` with custom key for access password to endpoint `/access-log`. If no port is provided, the default port used will be 3000.
 
 ## Development
 
