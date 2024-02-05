@@ -23,7 +23,7 @@ const formattedDateTime = jakartaTimezone.format("DD-MM-YYYY-HH_mm");
 // Multer configuration for handling file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads");
+    cb(null, __dirname, "uploads");
   },
   filename: (req, file, cb) => {
     const originalname = file.originalname;
