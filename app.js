@@ -20,14 +20,14 @@ const jakartaTimezone = moment.tz("Asia/Jakarta");
 // Format tanggal sesuai kebutuhan
 const formattedDateTime = jakartaTimezone.format("DD-MM-YYYY-HH_mm");
 
-// Multer configuration for handling file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname, "uploads");
+    cb(null, path.join(__dirname, "uploads")); // Menggunakan __dirname untuk memastikan bahwa direktori uploads adalah relatif terhadap file saat ini
   },
   filename: (req, file, cb) => {
     const originalname = file.originalname;
     const sanitizedFilename = originalname.replace(/\s+/g, "_");
+    const formattedDateTime = moment().format("DD-MM-YYYY_HH-mm-ss"); // Memperbaiki formattedDateTime karena mungkin belum didefinisikan di sini
     const filenameWithTimestamp = formattedDateTime + "-" + sanitizedFilename;
     cb(null, filenameWithTimestamp);
   },

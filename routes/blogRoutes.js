@@ -29,7 +29,7 @@ module.exports = (upload) => {
   // Rute untuk menyajikan file gambar
   router.get("/img/:filename", (req, res) => {
     const filename = req.params.filename;
-    const imagePath = path.join(__dirname, "../uploads", filename);
+    const imagePath = path.join("./uploads", filename);
 
     // Baca file gambar
     fs.readFile(imagePath, (err, data) => {

@@ -68,10 +68,7 @@ exports.updateBlog = async (req, res) => {
 
       // Hapus file gambar lama jika ada
       if (oldBlog.imageFileName) {
-        const imagePath = path.join(
-          __dirname,
-          `../uploads/${oldBlog.imageFileName}`
-        );
+        const imagePath = path.join(`./uploads/${oldBlog.imageFileName}`);
         fs.unlinkSync(imagePath);
       }
     }
@@ -108,10 +105,7 @@ exports.deleteBlog = async (req, res) => {
 
     // Hapus file gambar terkait
     if (deletedBlog.imageFileName) {
-      const imagePath = path.join(
-        __dirname,
-        `../uploads/${deletedBlog.imageFileName}`
-      );
+      const imagePath = path.join(`./uploads/${deletedBlog.imageFileName}`);
       fs.unlinkSync(imagePath);
     }
 
@@ -138,10 +132,7 @@ exports.deleteAllBlogs = async (req, res) => {
 
         // Hapus file gambar terkait
         if (deletedBlog.imageFileName) {
-          const imagePath = path.join(
-            __dirname,
-            `../uploads/${deletedBlog.imageFileName}`
-          );
+          const imagePath = path.join(`./uploads/${deletedBlog.imageFileName}`);
           fs.unlinkSync(imagePath);
         }
 
