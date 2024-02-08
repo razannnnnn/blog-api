@@ -1,7 +1,5 @@
 const Blog = require("../models/blogModel");
 const moment = require("moment-timezone");
-const fs = require("fs");
-const path = require("path");
 
 // Dapatkan semua blog
 exports.getAllBlogs = async (req, res) => {
@@ -30,17 +28,15 @@ exports.getBlogById = async (req, res) => {
 exports.createBlog = async (req, res) => {
   try {
     const { title, content } = req.body;
-    const imageFileName = req.file ? req.file.filename : null;
 
     const newBlog = new Blog({
       title,
       content,
-      imageFileName,
     });
-
     const savedBlog = await newBlog.save();
     res.status(201).json(savedBlog);
   } catch (err) {
+    console.error(err); // Cetak pesan kesalahan untuk debugging
     res.status(400).json({ message: err.message });
   }
 };
@@ -49,7 +45,6 @@ exports.createBlog = async (req, res) => {
 exports.updateBlog = async (req, res) => {
   try {
     const { title, content } = req.body;
-    const imageFileName = req.file ? req.file.filename : null;
 
     // Dapatkan data blog sebelum diperbarui
     const oldBlog = await Blog.findById(req.params.id);
@@ -62,15 +57,6 @@ exports.updateBlog = async (req, res) => {
     }
     if (content) {
       updateFields.content = content;
-    }
-    if (imageFileName) {
-      updateFields.imageFileName = imageFileName;
-
-      // Hapus file gambar lama jika ada
-      if (oldBlog.imageFileName) {
-        const imagePath = path.join(`./uploads/${oldBlog.imageFileName}`);
-        fs.unlinkSync(imagePath);
-      }
     }
 
     // Tambahkan waktu terakhir diedit
@@ -103,12 +89,6 @@ exports.deleteBlog = async (req, res) => {
       return res.status(404).json({ message: "Blog tidak ditemukan" });
     }
 
-    // Hapus file gambar terkait
-    if (deletedBlog.imageFileName) {
-      const imagePath = path.join(`./uploads/${deletedBlog.imageFileName}`);
-      fs.unlinkSync(imagePath);
-    }
-
     res.json({ message: "Blog dihapus dengan sukses" });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -129,12 +109,6 @@ exports.deleteAllBlogs = async (req, res) => {
         const deletedBlog = await Blog.findOneAndDelete({
           blogId: blog.blogId,
         });
-
-        // Hapus file gambar terkait
-        if (deletedBlog.imageFileName) {
-          const imagePath = path.join(`./uploads/${deletedBlog.imageFileName}`);
-          fs.unlinkSync(imagePath);
-        }
 
         return deletedBlog;
       })

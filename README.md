@@ -6,16 +6,16 @@ This is a repository for an API built with Node.js to manage a blog. This API pr
 
 1. **Clone the Repository**: Clone this repository into your local system by running the following command:
 
-    ```bash
-    git clone https://github.com/razn-id/blog-api.git
-    ```
+   ```bash
+   git clone https://github.com/razn-id/blog-api.git
+   ```
 
 2. **Install Dependencies**: Navigate to the project directory and install dependencies by running:
 
-    ```bash
-    cd blog-api
-    npm install
-    ```
+   ```bash
+   cd blog-api
+   npm install
+   ```
 
 3. **Configuration**: Make sure to set required environment variables, such as database connection or image storage settings (if used).
 
@@ -48,7 +48,9 @@ To start development server, you need to install Nodemon first. Run the followin
 ```bash
 npm install -g nodemon
 ```
+
 Once Nodemon is installed, you can start the development server using the following command:
+
 ```bash
 npm run dev
 ```
@@ -71,9 +73,9 @@ Here is a list of endpoints provided by the API:
 - 📂 **controllers**: Manages application logic.
 - 📂 **models**: Stores database model definitions.
 - 📂 **routes**: Defines API endpoints and links them with controllers.
-- 📂 **uploads**: Location for storing uploaded images.
 
 ## License
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Author

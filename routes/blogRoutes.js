@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const blogController = require("../controllers/blogController");
-const fs = require("fs");
-const path = require("path");
 
-module.exports = (upload) => {
+module.exports = () => {
   // Rute untuk menghapus semua blog
   router.delete("/dell-all", blogController.deleteAllBlogs);
 
@@ -15,34 +13,16 @@ module.exports = (upload) => {
   router.get("/:id", blogController.getBlogById);
 
   // Create a new blog
-  router.post("/", upload.single("image"), blogController.createBlog);
+  router.post("/", blogController.createBlog);
 
   // Update a blog by ID
-  router.put("/:id", upload.single("image"), blogController.updateBlog);
+  router.put("/:id", blogController.updateBlog);
 
   // Delete a blog by ID
   router.delete("/:id", blogController.deleteBlog);
 
   // Search blogs by title
   router.get("/search", blogController.searchBlogs);
-
-  // Rute untuk menyajikan file gambar
-  router.get("/img/:filename", (req, res) => {
-    const filename = req.params.filename;
-    const imagePath = path.join("./uploads", filename);
-
-    // Baca file gambar
-    fs.readFile(imagePath, (err, data) => {
-      if (err) {
-        // Jika terjadi kesalahan, tanggapi dengan 404 Not Found
-        res.status(404).send("File not found");
-      } else {
-        // Jika berhasil, set header dan kirim data gambar sebagai respons
-        res.setHeader("Content-Type", "image/png"); // Sesuaikan dengan jenis file gambar Anda
-        res.end(data);
-      }
-    });
-  });
 
   return router;
 };

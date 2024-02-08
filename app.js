@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const multer = require("multer");
 const blogRoutes = require("./routes/blogRoutes");
 const connectDB = require("./config/db");
 const fs = require("fs");
@@ -13,27 +12,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
-// Mengatur zona waktu ke Asia/Jakarta
-const jakartaTimezone = moment.tz("Asia/Jakarta");
-
-// Format tanggal sesuai kebutuhan
-const formattedDateTime = jakartaTimezone.format("DD-MM-YYYY-HH_mm");
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "uploads")); // Menggunakan __dirname untuk memastikan bahwa direktori uploads adalah relatif terhadap file saat ini
-  },
-  filename: (req, file, cb) => {
-    const originalname = file.originalname;
-    const sanitizedFilename = originalname.replace(/\s+/g, "_");
-    const formattedDateTime = moment().format("DD-MM-YYYY_HH-mm-ss"); // Memperbaiki formattedDateTime karena mungkin belum didefinisikan di sini
-    const filenameWithTimestamp = formattedDateTime + "-" + sanitizedFilename;
-    cb(null, filenameWithTimestamp);
-  },
-});
-
-const upload = multer({ storage });
 
 // Connect to MongoDB Atlas
 connectDB();
@@ -107,7 +85,7 @@ app.get("/", (req, res) => {
 });
 
 // Use the blog routes
-app.use("/api/blogs", blogRoutes(upload));
+app.use("/api/blogs", blogRoutes());
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
