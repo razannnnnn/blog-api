@@ -24,7 +24,7 @@ This is a repository for an API built with Node.js to manage a blog. This API pr
 To run the server, you can use the command:
 
 ```bash
-npm start
+npm run start
 ```
 
 Once the server is running, you can access the API via http://localhost:port/, where port is the port specified in the configuration file or the default port (usually 3000).
