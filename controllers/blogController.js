@@ -27,11 +27,12 @@ exports.getBlogById = async (req, res) => {
 // Buat blog baru
 exports.createBlog = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, creator } = req.body;
 
     const newBlog = new Blog({
       title,
       content,
+      creator,
     });
     const savedBlog = await newBlog.save();
     res.status(201).json(savedBlog);

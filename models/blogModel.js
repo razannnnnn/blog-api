@@ -11,6 +11,7 @@ const formattedTime = jakartaTimezone.format("HH:mm");
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, maxlength: 1000, required: true },
+  creator: { type: String, maxlength: 60, required: true },
   createdDate: { type: String, default: formattedDate },
   createdTime: { type: String, default: formattedTime },
   lastEditedDate: { type: String },
